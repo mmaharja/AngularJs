@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+</head>
+<body>
+	<div class ="container">
+		<div class="row">
+			<div class ="col-md-12">
+				<h1>Angular Picks</h1>
+			</div>
+		</div>
+		<div class="row" ng-app ="myApp" ng-controller ="myCtrl">
+			<div class="col-md-6 col-sm-12 col-md-offset-3">
+				<div class ="well well-sm">
+					<ul>
+						<li ng-repeat="x in items">
+							{{ x.Name + ', ' + x.Country }}
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		var app = angular.module('myApp', []);
+		app.controller('myCtrl', function ($scope, $http) {
+			$http.get("http://www.w3schools.com/angular/customers.php")
+			.success(function (response) { $scope.items = response.records; });
+			//$http.get("http://www.nfl.com/ajax/scorestrip?season=2015&seasonType=REG&wee=5")
+
+		});
+	</script>
+</body>
+</html>
